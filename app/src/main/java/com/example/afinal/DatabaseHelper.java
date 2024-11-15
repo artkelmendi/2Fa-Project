@@ -5,14 +5,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "UserDatabase.db";
     private static final int DATABASE_VERSION = 1;
 
-    // User Table
     private static final String TABLE_USERS = "users";
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_USERNAME = "username";
@@ -20,7 +18,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_EMAIL = "email";
     private static final String COLUMN_PASSWORD = "password";
 
-    // SQL statement
     private static final String CREATE_TABLE_USERS =
             "CREATE TABLE " + TABLE_USERS + " (" +
                     COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -36,7 +33,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_USERS);
-        Log.d("DatabaseHelper", "Database created successfully");
     }
 
     @Override
@@ -45,7 +41,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    // adding a new user
     public boolean addUser(String username, String name, String email, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -56,10 +51,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         long result = db.insert(TABLE_USERS, null, values);
         db.close();
-        return result != -1; // Return true if insertion is successful
+        return result != -1;
     }
 
-    // verifying login credentials
     public boolean validateUser(String username, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = ? AND " + COLUMN_PASSWORD + " = ?";
@@ -69,5 +63,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return isValid;
+    }
+
+    public String getUserEmail(String username) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String email = null;
+        String query = "SELECT " + COLUMN_EMAIL + " FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{username});
+
+        if (cursor.moveToFirst()) {
+            email = cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL));
+        }
+        cursor.close();
+        db.close();
+        return email;
     }
 }

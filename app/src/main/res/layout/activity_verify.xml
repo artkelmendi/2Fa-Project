@@ -1,0 +1,31 @@
+<!-- activity_verify.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/otpEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter the OTP sent to your email"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/otpET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/otpEmail"
+        android:layout_marginTop="16dp"
+        android:hint="Enter OTP"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/verifyBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/otpET"
+        android:layout_marginTop="16dp"
+        android:text="Verify OTP" />
+
+</RelativeLayout>

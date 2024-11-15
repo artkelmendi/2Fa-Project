@@ -13,7 +13,7 @@
         android:gravity="center"
         android:layout_gravity="center">
 
-        <!-- Register Title -->
+        <!-- Register -->
         <TextView
             android:id="@+id/textViewTitle"
             android:layout_width="wrap_content"
@@ -48,7 +48,7 @@
             android:inputType="textPersonName"
             android:layout_marginBottom="20dp" />
 
-        <!-- Email Input -->
+        <!-- email input -->
         <EditText
             android:id="@+id/editTextEmail"
             android:layout_width="300dp"
@@ -60,7 +60,7 @@
             android:inputType="textEmailAddress"
             android:layout_marginBottom="20dp" />
 
-        <!-- Password Input -->
+        <!-- password input -->
         <EditText
             android:id="@+id/editTextPassword"
             android:layout_width="300dp"
@@ -72,7 +72,7 @@
             android:inputType="textPassword"
             android:layout_marginBottom="20dp" />
 
-        <!-- Confirm Password Input -->
+        <!-- confirm password input -->
         <EditText
             android:id="@+id/editTextConfirmPassword"
             android:layout_width="300dp"
@@ -84,7 +84,7 @@
             android:inputType="textPassword"
             android:layout_marginBottom="30dp" />
 
-        <!-- Register Button -->
+        <!-- tegister button -->
         <Button
             android:id="@+id/buttonRegister"
             android:layout_width="300dp"
@@ -95,7 +95,7 @@
             android:padding="16dp"
             android:layout_marginBottom="20dp" />
 
-        <!-- Already Have Account Text -->
+        <!-- text already have an acc -->
         <TextView
             android:id="@+id/textViewLogin"
             android:layout_width="wrap_content"

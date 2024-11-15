@@ -22,7 +22,6 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        // ui elements
         editTextUsername = findViewById(R.id.editTextUsername);
         editTextName = findViewById(R.id.editTextName);
         editTextEmail = findViewById(R.id.editTextEmail);
@@ -31,10 +30,8 @@ public class RegisterActivity extends AppCompatActivity {
         buttonRegister = findViewById(R.id.buttonRegister);
         textViewLogin = findViewById(R.id.textViewLogin);
 
-        // databasehelper
         databaseHelper = new DatabaseHelper(this);
 
-        // register button
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,7 +55,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        // login button
         textViewLogin.setOnClickListener(v -> {
             Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
             startActivity(intent);
@@ -66,32 +62,27 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    // Mvalidation
     private boolean validateRegistration(String username, String name, String email, String password, String confirmPassword) {
         if (username.isEmpty() || name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show();
             return false;
         }
 
-        // Username should not contain special characters
         if (!username.matches("[a-zA-Z0-9]+")) {
             editTextUsername.setError("Username can only contain letters and numbers");
             return false;
         }
 
-        // Validate email format
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             editTextEmail.setError("Enter a valid email");
             return false;
         }
 
-        // Password requirements: at least 6 characters, 1 uppercase, 1 lowercase, 1 digit
         if (password.length() < 6 || !password.matches(".*[A-Z].*") || !password.matches(".*[a-z].*") || !password.matches(".*[0-9].*")) {
             editTextPassword.setError("Password must contain at least 6 characters, 1 uppercase, 1 lowercase, and 1 number");
             return false;
         }
 
-        // Confirm password must match password
         if (!password.equals(confirmPassword)) {
             editTextConfirmPassword.setError("Passwords do not match");
             return false;

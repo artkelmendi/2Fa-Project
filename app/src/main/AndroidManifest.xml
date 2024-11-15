@@ -22,6 +22,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" android:exported="true" />
+        <activity android:name=".DashboardActivity" android:exported="true" />
+        <activity android:name=".VerifyActivity" android:exported="true" />
+
+
+
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
